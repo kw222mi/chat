@@ -2,122 +2,156 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #000;
+    background-color: #121212;
     color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 1rem;
+    background-color: #1f1f1f;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 main {
-    height: 100vh;
-    padding: 1rem;
     display: flex;
-    flex-flow: column;
+    flex: 1;
+    overflow: hidden;
 }
 
-form {
-    width: 100%;
-    margin: auto;
-    max-width: 600px;
+.sidebar {
+    width: 250px;
+    background-color: #1f1f1f;
+    padding: 1rem;
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    gap: .25rem;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.room-info h2,
+.users-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.room-list,
+.user-list {
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.chat-section {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-join,
+.form-msg {
+    display: flex;
+    gap: 0.5rem;
 }
 
 input {
     flex-grow: 1;
-    max-width: calc(80% - .25rem);
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #2c2c2c;
+    color: #fff;
+}
+
+input::placeholder {
+    color: #bbb;
 }
 
 button {
-    width: 20%;
+    padding: 0.75rem 1rem;
+    background-color: #00bfa5;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-input,
-button {
-    border-radius: 10px;
-    padding: .5rem;
+button:hover {
+    background-color: #00a693;
 }
 
 .chat-display {
-    background-color: #333;
-    list-style-type: none;
-    width: 100%;
-    max-width: 600px;
+    flex: 1;
+    background-color: #1c1c1c;
     border-radius: 10px;
-    margin: 1rem auto;
-    padding: 0;
+    padding: 1rem;
+    overflow-y: auto;
     display: flex;
-    flex-flow: column;
-    justify-content: left;
-    overflow: auto;
-    flex-grow: 1;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .post {
-    background-color: #eee;
-    border-radius: 10px;
-    padding: 0 0 .25rem;
-    margin: .5rem;
-    overflow: hidden;
-    flex-shrink: 0;
+    background-color: #2c2c2c;
+    border-radius: 15px;
+    padding: 0.75rem;
+    max-width: 70%;
+    word-wrap: break-word;
+    animation: fadeIn 0.3s ease forwards;
 }
 
 .post--left {
-    width: 60%;
     align-self: flex-start;
 }
 
 .post--right {
-    width: 60%;
     align-self: flex-end;
+    background-color: #00bfa5;
+    color: #000;
 }
 
 .post__header {
-    color: #fff;
-    padding: .25rem .5rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-bottom: 0.25rem;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: .5rem;
-}
-
-.post__header--user {
-   
-}
-
-.post__header--reply {
- 
-}
-
-.post__header--name {
-    font-weight: bold;
-}
-
-.post__header--time {
-    font-size: .8rem;
 }
 
 .post__text {
-    margin-top: 5px;
-    color: #333;
-    padding: .25rem .5rem;
-}
-
-.user-list,
-.room-list,
-.activity {
-    width: 100%;
-    min-height: 2.65rem;
-    margin: 0 auto;
-    max-width: 600px;
-    padding: .75rem .25rem;
+    font-size: 1rem;
 }
 
 .activity {
     font-style: italic;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsiv */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
 }
