@@ -155,3 +155,27 @@ button:hover {
         display: none;
     }
 }
+
+#theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+}
+
+.light-theme {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.light-theme header,
+.light-theme .sidebar,
+.light-theme .chat-display,
+.light-theme .post {
+    background-color: #fff;
+    color: #000;
+}

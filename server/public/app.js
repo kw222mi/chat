@@ -42,6 +42,19 @@ function stringToColor(str) {
   return color;
 }
 
+const toggle = document.getElementById("theme-toggle");
+
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("light-theme");
+
+  if (document.body.classList.contains("light-theme")) {
+    toggle.textContent = "🌞"; // Sol för light mode
+  } else {
+    toggle.textContent = "🌙"; // Måne för dark mode
+  }
+});
+
+
 
 document.querySelector(".form-msg").addEventListener("submit", sendMessage);
 
