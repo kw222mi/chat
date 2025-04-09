@@ -87,10 +87,6 @@ button {
     transition: background 0.3s ease;
 }
 
-button:hover {
-    background-color: #00a693;
-}
-
 .chat-display {
     flex: 1;
     background-color: #1c1c1c;
@@ -153,7 +149,7 @@ button:hover {
 /* Dark mode - Light mode*/
 #theme-toggle {
     position: absolute;
-    top: 1rem;
+    top: .2rem;
     right: 1rem;
     background: none;
     border: none;
@@ -167,13 +163,29 @@ button:hover {
     color: #000;
 }
 
-.light-theme header,
+
 .light-theme .sidebar,
 .light-theme .chat-display,
 .light-theme .post {
     background-color: #fff;
     color: #000;
 }
+.light-theme h1 {
+    color: #fff;
+}
+.light-theme #name,
+.light-theme #room,
+.light-theme #message {
+    background-color: #fff;
+    color: #000;
+}
+
+.light-theme .side-menu {
+    color: #fff;
+}
+
+
+
 
 
 /* Menu for  userlist and chat rooms*/
@@ -242,7 +254,7 @@ button:hover {
 
 /* När menyknappen är öppen */
 .menu-toggle.open .bar:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(11px, 11px);
 }
 
 .menu-toggle.open .bar:nth-child(2) {
