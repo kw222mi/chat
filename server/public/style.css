@@ -26,6 +26,7 @@ main {
     display: flex;
     flex: 1;
     overflow: hidden;
+    margin-top: 4rem;
 }
 
 .sidebar {
@@ -149,13 +150,7 @@ button:hover {
     }
 }
 
-/* Responsiv */
-@media (max-width: 768px) {
-    .sidebar {
-        display: none;
-    }
-}
-
+/* Dark mode - Light mode*/
 #theme-toggle {
     position: absolute;
     top: 1rem;
@@ -179,3 +174,158 @@ button:hover {
     background-color: #fff;
     color: #000;
 }
+
+
+/* Menu for  userlist and chat rooms*/
+.side-menu {
+    position: fixed;
+    top: 4rem; 
+    left: 0;
+    width: 75%;
+    background-color: #111;
+    padding: 1rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    opacity: 0;
+    border-radius: 0 10px 10px 0;
+    max-height: 80vh; /* Maxhöjd så man kan scrolla om det behövs */
+}
+
+/* Visa menyn när aktiv */
+.side-menu.show {
+    transform: translateX(0);
+}
+
+/* Dölj menyn i början */
+.hidden {
+    display: none;
+}
+
+/* Meny-knapp */
+
+/* Stil för själva knappen */
+.menu-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+    display: none; /* Syns bara på små skärmar */
+    flex-direction: column;
+    justify-content: space-between; /* jämn fördelning */
+    align-items: center;
+    width: 30px;
+    height: 25px;
+    padding: 0;
+}
+
+/* Stil för varje "streck" */
+.menu-toggle .bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Visa knappen på små skärmar */
+@media (max-width: 600px) {
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+/* När menyknappen är öppen */
+.menu-toggle.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Anpassning av chat-display */
+.chat-display {
+    margin-top: 3rem; 
+}
+
+/* Mobilanpassning */
+@media (max-width: 600px) {
+    .form-join, .form-msg {
+        flex-flow: column nowrap;
+        gap: 0.5rem;
+        width: 95%;
+        margin: auto;
+    }
+
+     .chat-display {
+        width: 100%;
+        margin: 0;
+    }
+
+   .post--left, .post--right {
+        width: 100%;
+        max-width: 90%;
+    }
+
+    main {
+        flex-direction: column;
+        margin-top: 3rem;
+    }
+
+      header {
+        font-size: 1.2rem;
+        padding: 0.5rem;
+    }
+
+    .sidebar {
+        display: none; /* Dölj sidebar i mobilläge */
+    }
+
+    .chat-section {
+        flex: 1;
+        padding: 1rem;
+    }
+
+    /* Visa sidomenyn (side-menu) när hamburgermenyn är klickad */
+    .side-menu {
+        width: 75%;
+        top: 0;
+        left: 0;
+        padding-top: 4rem; 
+          transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    }
+
+    .side-menu.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+    .form-join, .form-msg {
+        flex-direction: column;
+        width: 95%;
+        margin: auto;
+    }
+
+    .chat-display {
+        width: 100%;
+        margin: 0;
+        margin-top: 3rem; 
+    }
+
+    .post--left, .post--right {
+        width: 100%;
+        max-width: 90%;
+    }
+}
+

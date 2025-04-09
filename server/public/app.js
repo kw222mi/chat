@@ -5,8 +5,15 @@ const nameInput = document.querySelector("#name");
 const chatRoom = document.querySelector("#room");
 const activity = document.querySelector(".activity");
 const usersList = document.querySelector(".user-list");
+const userListDesktop = document.querySelector(".user-list");
+const userListMobile = document.querySelector(".user-list-mobile");
+const roomListDesktop = document.querySelector(".room-list");
+const roomListMobile = document.querySelector(".room-list-mobile");
 const roomList = document.querySelector(".room-list");
 const chatDisplay = document.querySelector(".chat-display");
+const darkModetoggle = document.getElementById("theme-toggle");
+const menuToggle = document.getElementById("menu-toggle");
+const sideMenu = document.querySelector(".side-menu");
 
 function sendMessage(e) {
   e.preventDefault();
@@ -30,6 +37,42 @@ function enterRoom(e) {
   }
 }
 
+function showUsers(users) {
+  userListDesktop.textContent = "";
+  userListMobile.textContent = "";
+  if (users) {
+    userListDesktop.innerHTML = `<em>Users in ${chatRoom.value}:</em>`;
+    userListMobile.innerHTML = `<em>Users in ${chatRoom.value}:</em>`;
+    users.forEach((user, i) => {
+      userListDesktop.textContent += ` ${user.name}`;
+      userListMobile.textContent += ` ${user.name}`;
+      if (users.length > 1 && i !== users.length - 1) {
+        userListDesktop.textContent += ",";
+        userListMobile.textContent += ",";
+      }
+    });
+  }
+}
+
+function showRooms(rooms) {
+  roomListDesktop.textContent = "";
+  roomListMobile.textContent = "";
+  if (rooms) {
+    roomListDesktop.innerHTML = "<em>Active Rooms:</em>";
+    roomListMobile.innerHTML = "<em>Active Rooms:</em>";
+    rooms.forEach((room, i) => {
+      roomListDesktop.textContent += ` ${room}`;
+      roomListMobile.textContent += ` ${room}`;
+      if (rooms.length > 1 && i !== rooms.length - 1) {
+        roomListDesktop.textContent += ",";
+        roomListMobile.textContent += ",";
+      }
+    });
+  }
+}
+
+
+// Generate a uniqe color for the user
 function stringToColor(str) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -42,18 +85,21 @@ function stringToColor(str) {
   return color;
 }
 
-const toggle = document.getElementById("theme-toggle");
 
-toggle.addEventListener("click", () => {
+darkModetoggle.addEventListener("click", () => {
   document.body.classList.toggle("light-theme");
-
   if (document.body.classList.contains("light-theme")) {
-    toggle.textContent = "🌞"; // Sol för light mode
+    darkModetoggle.textContent = "🌙";
   } else {
-    toggle.textContent = "🌙"; // Måne för dark mode
+    darkModetoggle.textContent = "🌞";
   }
 });
 
+
+menuToggle.addEventListener("click", () => {
+  sideMenu.classList.toggle("show");
+  menuToggle.classList.toggle("open");
+});
 
 
 document.querySelector(".form-msg").addEventListener("submit", sendMessage);
@@ -74,7 +120,7 @@ socket.on("message", (data) => {
   if (name !== nameInput.value && name !== "Admin")
     li.className = "post post--right";
 
-  const userColor = stringToColor(name); // Generera färg för användaren
+  const userColor = stringToColor(name); // Get color for user
 
   if (name !== "Admin") {
     li.innerHTML = `<div class="post__header ${
@@ -112,28 +158,3 @@ socket.on("roomList", ({ rooms }) => {
   showRooms(rooms);
 });
 
-function showUsers(users) {
-  usersList.textContent = "";
-  if (users) {
-    usersList.innerHTML = `<em>Users in ${chatRoom.value}:</em>`;
-    users.forEach((user, i) => {
-      usersList.textContent += ` ${user.name}`;
-      if (users.length > 1 && i !== users.length - 1) {
-        usersList.textContent += ",";
-      }
-    });
-  }
-}
-
-function showRooms(rooms) {
-  roomList.textContent = "";
-  if (rooms) {
-    roomList.innerHTML = "<em>Active Rooms:</em>";
-    rooms.forEach((room, i) => {
-      roomList.textContent += ` ${room}`;
-      if (rooms.length > 1 && i !== rooms.length - 1) {
-        roomList.textContent += ",";
-      }
-    });
-  }
-}
