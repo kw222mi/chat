@@ -11,6 +11,8 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    height: 100vh; /* Så vi kan använda 100% av höjden */
+    overflow: hidden; /* Viktigt! Hindrar sidan från att scrolla */
 }
 
 header {
@@ -20,13 +22,18 @@ header {
     font-size: 1.5rem;
     letter-spacing: 1px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
 }
 
 main {
     display: flex;
     flex: 1;
+    flex-direction: column;
+    margin-top: 4rem; /* Motsvarar headerns höjd */
     overflow: hidden;
-    margin-top: 4rem;
 }
 
 .sidebar {
@@ -56,6 +63,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    overflow: hidden;
 }
 
 .form-join,
@@ -88,14 +96,18 @@ button {
 }
 
 .chat-display {
+    flex-grow: 1;
+    min-height: 0;
     flex: 1;
     background-color: #1c1c1c;
     border-radius: 10px;
     padding: 1rem;
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    flex: 1;
+    overflow-y: auto; /* Här sker scrollen */
+    min-height: 0; /* tillåt att flexbarn krymper */
 }
 
 .post {
@@ -159,17 +171,21 @@ button {
 }
 
 .light-theme {
-    background-color: #f0f0f0;
+    background-color: #d2cece;
     color: #000;
 }
 
 
 .light-theme .sidebar,
-.light-theme .chat-display,
 .light-theme .post {
     background-color: #fff;
     color: #000;
 }
+
+.light-theme .chat-display {
+    background-color: #f0f0f0;
+}
+
 .light-theme h1 {
     color: #fff;
 }
@@ -183,10 +199,6 @@ button {
 .light-theme .side-menu {
     color: #fff;
 }
-
-
-
-
 
 /* Menu for  userlist and chat rooms*/
 .side-menu {
@@ -220,7 +232,7 @@ button {
 /* Stil för själva knappen */
 .menu-toggle {
     position: fixed;
-    top: 1rem;
+    top: 1.3rem;
     left: 1rem;
     background: none;
     border: none;
