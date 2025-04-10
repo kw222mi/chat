@@ -1,4 +1,5 @@
-const socket = io("https://chat-alpha-khaki.vercel.app/");
+//const socket = io("ws://localhost:3500");
+const socket = io("https://chat-e3oz.onrender.com");
 
 const msgInput = document.querySelector("#message");
 const nameInput = document.querySelector("#name");
